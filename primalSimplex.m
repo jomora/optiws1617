@@ -51,6 +51,10 @@ x(B) = xB;
 x_old = x;
 iter = 0;
 eps = 10^-6;
+
+%% Initialize output parameters
+xopt = x;
+message = '';
 %%
 if(any(xB < 0))
    error('Basis is not acceptable.');
