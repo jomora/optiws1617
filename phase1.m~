@@ -48,7 +48,7 @@ n = size_c(1);
 m = size_b(1);
 input_A = [A eye(size_A(1))];
 B = n+1:n+m;
-input_c = [zeros(1,n) ones(1,m)]'; 
+input_c = [zeros(1,n) ones(1,m)]; 
 %% call simplex
 [xopt,result_B,messageSimplex,iterSimplex] = primalSimplex(input_A,b,input_c,B);
 %% Set iter = 0 for phase 1 algorithm

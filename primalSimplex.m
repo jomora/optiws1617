@@ -18,8 +18,8 @@ function [ xopt,B,message, iter ] = primalSimplex( A,b,c,B)
 % A = [1 0 1 1 0 0;
 %      1 1 0 0 1 0;
 %      1 2 0 0 0 1];
-% b = [8;7;12];
-% c = [-3 -2 -2 0 0 0];
+% b = [8 7 12]';
+% c = [-3 -2 -2 0 0 0]';
 % B = [4 5 6];
 
 %% Check compatibility of dimensions
@@ -30,7 +30,7 @@ size_c = size(c);
 if(size_b(1) ~= size_A(1))
    error('Dimensions of A and b are incompatible.')  
 end
-if(size_c(2) ~= size_A(2))
+if(size_c(1) ~= size_A(2))
    error('Dimensions of A and c are incompatible.')  
 end
 
@@ -67,9 +67,9 @@ N = setdiff(1:size_A(2),B);
 while (iter == 0 | norm(x_old - x) > eps)
   
 %% BTRAN
-y = A(:,B)'\c(B)';
+y = A(:,B)'\c(B);
 %% Pricing
-z = c(N)' - A(:,N)'*y;
+z = c(N) - A(:,N)'*y;
 if(all(z >= 0))
    xopt = x;
    message = 'Optimum is found';
@@ -102,6 +102,7 @@ x(B) = xB;
 N(j) = Bi;
 B(i) = Nj;
 x(Nj) = gamma;
+N = sort(N);
 iter = iter + 1;
 
 %%
