@@ -64,7 +64,7 @@ end
 N = setdiff(1:size_A(2),B);
 
 %%
-while (iter == 0 | norm(x_old - x) > eps)
+while (iter == 0  || norm(x_old - x) > eps)
   
 %% BTRAN
 y = A(:,B)'\c(B);
@@ -76,11 +76,11 @@ if(all(z >= 0))
    return;
 end
 % j is the position of element in N, that leaves the basis
-j = find(z<0,1);
-% Nj is j from skript
-Nj = N(j);
+% j = find(z<0,1);
+j = min(N(z <0));
+
 %% FTRAN
-w = A(:,B)\A(:,Nj);
+w = A(:,B)\A(:,j);
 %% Ratio-Test
 if(all(w <= 0))
    xopt = x;
@@ -99,10 +99,10 @@ x_old = x;
 xB = xB - gamma*w;
 % update also complete solution
 x(B) = xB;
-N(j) = Bi;
-B(i) = Nj;
-x(Nj) = gamma;
-N = sort(N);
+N(N == j) = Bi;
+B(i) = j;
+x(j) = gamma;
+% N = sort(N);
 iter = iter + 1;
 
 %%
