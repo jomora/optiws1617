@@ -67,8 +67,8 @@ N = setdiff(1:size_A(2),B);
 while (iter == 1  || norm(x_old - x) > eps)
   
 %% print basis
-    iter
-    B    
+%     iter
+%     B    
 %% BTRAN
 y = A(:,B)'\c(B);
 %% Pricing

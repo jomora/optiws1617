@@ -1,3 +1,5 @@
+% Autoren: Vladyslav Yushchenko, Jonas Molina Ramirez, Florian Beck
+
 %%
 clc;
 clear;
@@ -22,7 +24,9 @@ eps = 0.1;
 primalSimplex(A,b,c,Bx);
 
 %% 4 c)
-
+% Uncomment lines 70/71 to get output.
+% We set those lines to comments, because the output slows down the
+% computation significantly
 clc;
 clear;
 eps = 0.4;
