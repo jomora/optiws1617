@@ -49,7 +49,7 @@ xB = A(:,B)\b;
 x = zeros(size_A(2),1);
 x(B) = xB;
 x_old = x;
-iter = 0;
+iter = 1;
 eps = 10^-6;
 
 %% Initialize output parameters
@@ -64,8 +64,11 @@ end
 N = setdiff(1:size_A(2),B);
 
 %%
-while (iter == 0  || norm(x_old - x) > eps)
+while (iter == 1  || norm(x_old - x) > eps)
   
+%% print basis
+    iter
+    B    
 %% BTRAN
 y = A(:,B)'\c(B);
 %% Pricing
